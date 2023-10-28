@@ -1,11 +1,19 @@
-import { GraphQLClient } from "graphql-request";
+const { gql } = require("graphql-request");
 
-const isClient = typeof window !== undefined;
+export const verifyGoogleTokenQuery = gql`
+  query verifyGoogleToken($token: String!) {
+    verifyGoogleToken(token: $token)
+  }
+`;
 
-export const userClient = new GraphQLClient("http://localhost:8000/graphql/", {
-  headers: () => ({
-    auth: isClient
-      ? `Bearer ${window.localStorage.getItem("__twitter_clone")}`
-      : "",
-  }),
-});
+export const getUserDetailsQuery = gql`
+  query getUserDetails {
+    getUserInfo {
+      id
+      firstName
+      lastName
+      email
+      profileImageURL
+    }
+  }
+`;
