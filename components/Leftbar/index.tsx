@@ -10,9 +10,6 @@ import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import Showicon from "./Showicon";
-import { useGetUserDetails } from "@/hooks/user";
-import { useState } from "react";
-import { useQueryClient } from "@tanstack/react-query";
 
 type leftbaricon = {
   title: string;

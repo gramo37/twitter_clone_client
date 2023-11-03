@@ -1,32 +1,44 @@
 import Image from "next/image";
 
 type TTweet = {
-  profileName?: any;
-  timestamp?: any;
+  author?: any;
   content?: any;
+  imageURL?: any;
 };
 
 export default function Tweet(props: TTweet) {
-  const { profileName, timestamp, content } = props || {};
+  const { author, content, imageURL } = props || {};
+  const { firstName, profileImageURL } = author || {};
   return (
     <div className="border p-4 m-2 rounded-md shadow-md bg-white">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <Image
-            src="next.svg" // Replace with the actual profile image URL
+            src={profileImageURL} 
             alt="Profile"
             className="h-10 w-10 rounded-full object-cover"
             width={100}
             height={100}
           />
           <div className="ml-3">
-            <div className="text-xl font-semibold">{profileName || "Loading..."}</div>
-            <div className="text-gray-500 text-sm">{timestamp || ""}</div>
+            <div className="text-xl font-semibold">
+              {firstName || "Loading..."}
+            </div>
+            <div className="text-gray-500 text-sm">{"1h"}</div>
           </div>
         </div>
       </div>
 
-      <div className="text-lg">{content || "Loading, kindly wait ..."}</div>
+      <div className="text-lg">
+        {content || "Loading, kindly wait ..."}
+        {imageURL && <Image
+            src={imageURL} 
+            alt="Profile"
+            className="h-10 w-10 rounded-full object-cover"
+            width={100}
+            height={100}
+          />}
+      </div>
 
       <div className="mt-4 flex justify-between">
         <div className="flex space-x-4">

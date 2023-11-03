@@ -5,7 +5,6 @@ import { useGetUserDetails } from "@/hooks/user";
 
 export default function Home() {
   const {user} = useGetUserDetails();
-  console.log(user);
   return (
     <div className="grid grid-cols-12 w-full m-auto mt-1">
       <div className="mx-1 my-2 col-span-2"><Leftbar user={user}/></div>
