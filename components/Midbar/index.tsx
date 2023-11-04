@@ -4,11 +4,9 @@ import ImageIcon from "@mui/icons-material/Image";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-// Will be fetched from the API
-
-export default function Midbar() {
+export default function Midbar(props: any) {
+  const { tweets } = props;
   const { mutate, isIdle } = useCreateTweet();
-  const { tweets, isLoading } = useGetAllTweets();
   const [content, setContent] = useState("");
 
   const handleImageInput = () => {
@@ -19,24 +17,23 @@ export default function Midbar() {
   };
 
   useEffect(() => {
-    if(isIdle) return;
+    if (isIdle) return;
     const id = toast.loading("Creating Tweet...");
     toast.update(id, {
       render: "Successfully created a tweet!!",
       type: "success",
       isLoading: false,
-      autoClose: 3000
+      autoClose: 3000,
     });
   }, [isIdle]);
 
   const createNewTweet = () => {
-    console.log(content);
     mutate({
       content,
     });
   };
 
-  if (!tweets || isLoading) return <h2>Loading...</h2>;
+  if (!tweets) return <h2>Loading...</h2>;
 
   return (
     <div className="">

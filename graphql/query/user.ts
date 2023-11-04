@@ -17,3 +17,22 @@ export const getUserDetailsQuery = gql`
     }
   }
 `;
+
+export const getUserDetailsByIdQuery = gql`
+  query GetUserInfoById($userId: ID!) {
+    getUserInfoById(id: $userId) {
+      id
+      firstName
+      profileImageURL
+      tweets {
+        id
+        content
+        author {
+          id
+          firstName
+          profileImageURL
+        }
+      }
+    }
+  }
+`;
